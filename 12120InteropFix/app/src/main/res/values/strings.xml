@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">piruma-java</string>
+    <string name="yellow">Yellow</string>
+    <string name="Email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Log In</string>
+    <string name="piruma">PIRUMA</string>
+    <string name="pengertian">Platform Peminjaman Ruangan untuk Mahasiswa UGM</string>
+    <string name="noacc">Don't have an account?</string>
+    <string name="signup">Sign Up</string>
+    <string name="forgotpass">Forgot your password?</string>
+    <string name="profile_name">Nama</string>
+    <string name="profile_fos">Prodi</string>
+    <string name="profile_faculty">Fakultas</string>
+    <string name="nama_ruang">Ruang E6</string>
+    <string name="nama_dept">Departemen Teknik Elektro dan Teknologi Informasi</string>
+    <string name="date_avail">13 Maret 2018</string>
+    <string name="time_avail">13.00-15.00</string>
+    <string name="pilih_ruangan">Pilih Ruangan :</string>
+
+</resources>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/classroom"
+    tools:context=".Activity.SignupActivity"
+    android:orientation="vertical">
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:textSize="36sp"
+        android:textColor="#fff"
+        android:fontFamily="@font/montserrat_light"
+        android:padding="18dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="20dp"
+        android:gravity="center_horizontal">
+        <EditText
+            android:layout_marginTop="10dp"
+            android:id="@+id/edittextUsername"
+            android:background="@drawable/edittext_round"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"
+            android:fontFamily="@font/montserrat_light"/>
+        <EditText
+            android:layout_marginTop="10dp"
+            android:id="@+id/edittextEmail"
+            android:background="@drawable/edittext_round"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:fontFamily="@font/montserrat_light"/>
+        <EditText
+            android:layout_marginTop="10dp"
+            android:id="@+id/edittextNim"
+            android:background="@drawable/edittext_round"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="NIM"
+            android:fontFamily="@font/montserrat_light"/>
+        <EditText
+            android:layout_marginTop="10dp"
+            android:id="@+id/edittextTelepon"
+            android:background="@drawable/edittext_round"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Telepon"
+            android:inputType="number"
+            android:fontFamily="@font/montserrat_light"/>
+        <EditText
+            android:layout_marginTop="10dp"
+            android:id="@+id/edittextPassword"
+            android:background="@drawable/edittext_round"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:fontFamily="@font/montserrat_light"/>
+        <EditText
+            android:layout_marginTop="10dp"
+            android:id="@+id/edittextPasswordConfirm"
+            android:background="@drawable/edittext_round"
+            android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirmation Password"
+            android:inputType="textPassword"
+            android:fontFamily="@font/montserrat_light"/>
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_marginTop="20dp"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_login_round"
+            android:text="Sign Up"
+            android:textColor="#fff"
+            android:textAllCaps="false"
+            android:fontFamily="@font/montserrat_regular"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import app.piruma_java.Activity.LoginActivity;
+import app.piruma_java.main.MainActivity;
 
 public class Splash extends AppCompatActivity {
 

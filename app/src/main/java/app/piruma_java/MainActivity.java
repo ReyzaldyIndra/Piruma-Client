@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private MainAdapter mainAdapter;
     private FloatingActionButton btnAddRoom;
 
-//halo
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,13 +41,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, SearchActivity.class);
                 startActivity(intent);
-
             }
         });
         getRoom();
     }
-
-
 
     void getRoom() {
         final String url = "https://dteti.au-syd.mybluemix.net/api/ruang/list";

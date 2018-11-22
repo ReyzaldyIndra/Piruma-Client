@@ -21,14 +21,17 @@ import app.piruma_java.model.RoomAvail;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHolder> {
 
-    private Context mContext;
-    private List<RoomAvail> departemenList;
-    private TextView namaDepartemen,namaFakultas,jumlahRuangan;
+    public Context mContext;
+    public List<RoomAvail> departemenList;
+    public TextView namaDepartemen;
+    private TextView namaFakultas;
+    private TextView jumlahRuangan;
 
 
 public SearchAdapter(Context mContext, List<RoomAvail> departemenList){
     this.mContext = mContext;
     this.departemenList = departemenList;
+
 }
     @Override
     public SearchAdapter.MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {

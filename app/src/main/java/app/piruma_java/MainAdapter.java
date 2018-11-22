@@ -18,10 +18,10 @@ import app.piruma_java.model.RoomItem;
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder>{
 
     private Context mContext;
-    private List<RoomItem> roomItemList;
-    private TextView txNamaRuang;
-    private TextView txNamaDept;
-    private TextView txJumlahRuang;
+    public List<RoomItem> roomItemList;
+    public TextView txNamaRuang;
+    public TextView txNamaDept;
+    public TextView txJumlahRuang;
 
 
     public MainAdapter(Context mContext, List<RoomItem> roomList){

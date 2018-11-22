@@ -1,4 +1,4 @@
-package app.piruma_java;
+package app.piruma_java.selectroom;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
 
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,8 +16,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.piruma_java.model.RoomAvail;
-import app.piruma_java.MainAdapter;
+import app.piruma_java.R;
 import app.piruma_java.model.SelectRoom;
 import app.piruma_java.network.VolleyNetwork;
 

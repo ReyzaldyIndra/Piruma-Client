@@ -1,4 +1,4 @@
-package app.piruma_java;
+package app.piruma_java.filter;
 
 import app.piruma_java.base.BaseView;
 

@@ -16,8 +16,6 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import app.piruma_java.AppController;
-
 public class VolleyNetwork {
     private String url;
     private String TAG;

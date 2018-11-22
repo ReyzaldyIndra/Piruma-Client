@@ -1,4 +1,4 @@
-package app.piruma_java;
+package app.piruma_java.main;
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
@@ -18,6 +18,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.piruma_java.R;
 import app.piruma_java.model.RoomItem;
 import app.piruma_java.network.VolleyNetwork;
 import app.piruma_java.search.SearchActivity;

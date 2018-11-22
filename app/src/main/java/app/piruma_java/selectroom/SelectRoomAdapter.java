@@ -1,19 +1,15 @@
-package app.piruma_java;
+package app.piruma_java.selectroom;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
-import app.piruma_java.model.RoomAvail;
-import app.piruma_java.model.RoomItem;
+import app.piruma_java.R;
 import app.piruma_java.model.SelectRoom;
 
 public class SelectRoomAdapter extends RecyclerView.Adapter<SelectRoomAdapter.SelectViewHolder>{

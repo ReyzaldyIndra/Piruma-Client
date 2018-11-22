@@ -21,8 +21,8 @@
         <activity android:name=".auth.signin.SignInActivity" />
         <activity android:name=".search.SearchActivity" />
         <activity android:name=".filter.FilterActivity" />
-        <activity android:name=".SelectRoomActivity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".selectroom.SelectRoomActivity" />
+        <activity android:name=".main.MainActivity"></activity>
     </application>
 
 </manifest>

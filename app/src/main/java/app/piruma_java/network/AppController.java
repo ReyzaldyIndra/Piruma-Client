@@ -1,4 +1,4 @@
-package app.piruma_java;
+package app.piruma_java.network;
 
 import android.content.Context;
 import android.graphics.Bitmap;

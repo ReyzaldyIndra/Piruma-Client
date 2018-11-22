@@ -1,13 +1,5 @@
 package app.piruma_java.filter;
 
-import android.widget.CalendarView;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.Calendar;
-
-import app.piruma_java.FilterView;
 import app.piruma_java.base.BasePresenter;
 
 public class FilterPresenter extends BasePresenter<FilterView>{}

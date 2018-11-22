@@ -17,9 +17,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.piruma_java.MainActivity;
 import app.piruma_java.R;
-import app.piruma_java.SelectRoomActivity;
+import app.piruma_java.selectroom.SelectRoomActivity;
 import app.piruma_java.model.RoomAvail;
 import app.piruma_java.network.VolleyNetwork;
 

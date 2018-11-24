@@ -1,18 +1,11 @@
 package app.piruma_java.search;
 
 import android.content.Context;
-import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.List;
-
 import java.util.List;
 
 import app.piruma_java.R;
@@ -55,7 +48,7 @@ public SearchAdapter(Context mContext, List<RoomAvail> departemenList){
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public MyViewHolder(final View view){
+        public MyViewHolder(View view){
             super(view);
             namaDepartemen = view.findViewById(R.id.txtDepartemen);
             namaFakultas = view.findViewById(R.id.txtFakultas);

@@ -8,8 +8,9 @@ public class SelectRoom {
     private String fasilitas;
     private String jadwal;
     private String kapasitas;
+    private String id_ruangan;
 
-    public SelectRoom(String dept, String fak, String jml, String ruang, String fasilitas, String jadwal, String kapasitas){
+    public SelectRoom(String ruang, String id_ruangan, String dept, String kapasitas, String fasilitas){
         this.dept = dept;
         this.fak = fak;
         this.jml = jml;
@@ -17,6 +18,7 @@ public class SelectRoom {
         this.fasilitas = fasilitas;
         this.jadwal = jadwal;
         this.kapasitas = kapasitas;
+        this.id_ruangan = id_ruangan;
     }
 
     public String getDept() {
@@ -73,6 +75,14 @@ public class SelectRoom {
 
     public void setKapasitas(String kapasitas) {
         this.kapasitas = kapasitas;
+    }
+
+    public String getId_ruangan() {
+        return id_ruangan;
+    }
+
+    public void setId_ruangan(String id_ruangan) {
+        this.id_ruangan = id_ruangan;
     }
 }
 

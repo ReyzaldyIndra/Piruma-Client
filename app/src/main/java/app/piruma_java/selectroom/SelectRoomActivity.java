@@ -6,6 +6,8 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 
@@ -20,13 +22,13 @@ import app.piruma_java.R;
 import app.piruma_java.model.SelectRoom;
 import app.piruma_java.network.VolleyNetwork;
 
-public class SelectRoomActivity extends AppCompatActivity {
+public class SelectRoomActivity extends AppCompatActivity{
 private RecyclerView rvListRoomDept;
 private List<SelectRoom> selectRoomList = new ArrayList<>();
 private String TAG = SelectRoomActivity.class.getSimpleName();
 private SelectRoomAdapter selectRoomAdapter;
 private Button btnBookRoom;
-
+private TextView txNamaDept, txNamaFak, txJumlah, txFasilitas, txJadwal, txKapasitas;
 
 
     @Override
@@ -35,18 +37,25 @@ private Button btnBookRoom;
         setContentView(R.layout.activity_select_room);
         rvListRoomDept = findViewById(R.id.rv_list_room_dept);
         btnBookRoom = findViewById(R.id.sel_btn_book_room);
+        txNamaDept = findViewById(R.id.sel_tx_nama_dept);
+        txNamaFak = findViewById(R.id.sel_tx_nama_fak);
+        txJumlah = findViewById(R.id.sel_tx_jumlah);
+        txFasilitas = findViewById(R.id.sel_tx_fasilitas);
+        txJadwal = findViewById(R.id.sel_tx_jadwal);
+        txKapasitas = findViewById(R.id.sel_tx_kapasitas);
+
+
         getList();
     }
 
     void getList(){
         final String url = "https://piruma.au-syd.mybluemix.net/api/ruangan/listroom";
+
         JSONObject body = new JSONObject();
 
         try{
-            body.put("result","id_departemen");
-            body.put("result", "nama_ruangan");
-            body.put("result", "fasilitas");
-            body.put("result", "kapasitas");
+            body.put("id_departemen","Dept-1");
+            body.put("kapasitas", "10");
 
         } catch (JSONException e){
             e.printStackTrace();
@@ -60,17 +69,24 @@ private Button btnBookRoom;
                     JSONArray array = result.getJSONArray("result");
                     for (int i=0; i<array.length(); i++){
                         JSONObject list = array.getJSONObject(i);
-                        String namaDept = list.getString("id_departemen");
-                        String fak = "Fakultas Teknik";
                         String namaRuang = list.getString("nama_ruangan");
+                        String idRuangan = list.getString("id_ruangan");
+                        String namaDept = list.getString("id_departemen");
                         String kapasitas = list.getString("kapasitas");
                         String fasilitas = list.getString("fasilitas");
-                        String jadwal = "07.00-09.00 Kuliah";
-                        String jumlah = list.getString("array.length()");
-                        SelectRoom selectRoom = new SelectRoom(namaDept, fak, jumlah, namaRuang, fasilitas, jadwal, kapasitas);
+                        SelectRoom selectRoom = new SelectRoom(namaRuang, idRuangan, namaDept, kapasitas, fasilitas);
                         selectRoomList.add(selectRoom);
+
+
                     }
+
                     selectRoomAdapter = new SelectRoomAdapter(SelectRoomActivity.this, selectRoomList);
+                    selectRoomAdapter.setOnItemClickedListener(new SelectRoomAdapter.itemClickedListener() {
+                        @Override
+                        public void onItemClickedListener(String fasilitas, String Jadwal) {
+                            Toast.makeText(SelectRoomActivity.this, "cobo", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                     RecyclerView.LayoutManager layoutManager = new GridLayoutManager(SelectRoomActivity.this, 1);
                     rvListRoomDept.setLayoutManager(layoutManager);
                     rvListRoomDept.setItemAnimator(new DefaultItemAnimator());

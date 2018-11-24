@@ -147,8 +147,6 @@
         </LinearLayout>
 
         </LinearLayout>
-
-
     </android.support.v7.widget.CardView>
 
 <Button
@@ -161,5 +159,12 @@
     android:fontFamily="@font/montserrat_regular"
     android:layout_marginTop="20dp"
     />
+    <TextView
+        android:id="@+id/sel_tx_id_ruangan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ppp"
+        android:textColor="@color/hitamteks"
+        />
 
 </LinearLayout>

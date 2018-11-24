@@ -49,14 +49,13 @@ public class SearchActivity extends AppCompatActivity {
     void getSearchList(){
         final String link = "https://piruma.au-syd.mybluemix.net/api/ruangan/search";
         JSONObject body = new JSONObject();
-//        JSONObject timeStamp = new JSONObject();
+        JSONObject timeStamp = new JSONObject();
 
         try {
-            body.put("result", "count");
-            body.put("result", "departemen");
-//            timeStamp.put("timestamp_start","1");
-//            timeStamp.put("timestamp_end","9999");
-//            body.put("TimeStamp",timeStamp);
+            body.put("kapasitas", "30");
+            timeStamp.put("timestamp_start","1");
+            timeStamp.put("timestamp_end","9999");
+            body.put("TimeStamp",timeStamp);
 
         } catch (JSONException e){
             e.printStackTrace();

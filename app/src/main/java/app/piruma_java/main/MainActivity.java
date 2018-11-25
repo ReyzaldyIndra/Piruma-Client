@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.piruma_java.R;
+import app.piruma_java.ScheduleActivity;
 import app.piruma_java.model.RoomItem;
 import app.piruma_java.network.VolleyNetwork;
 import app.piruma_java.search.SearchActivity;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         btnAddRoom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                Intent intent = new Intent(MainActivity.this, ScheduleActivity.class);
                 startActivity(intent);
             }
         });

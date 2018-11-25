@@ -16,11 +16,15 @@ import java.util.List;
 import app.piruma_java.R;
 import app.piruma_java.model.SelectRoom;
 
+
 public class SelectRoomAdapter extends RecyclerView.Adapter<SelectRoomAdapter.SelectViewHolder> {
 
     private Context context;
     private List<SelectRoom> selectRooms;
+//    private List<SelectRoom2> selectRooms2;
     private TextView txNamaRuang;
+
+
     private itemClickedListener itemClickedListener;
 
 
@@ -30,8 +34,9 @@ public class SelectRoomAdapter extends RecyclerView.Adapter<SelectRoomAdapter.Se
 
     }
     public interface itemClickedListener{
-        void onItemClickedListener(String fasilitas, String Jadwal);
+        void onItemClickedListener(String fasilitas, String kapasitas);
     }
+
 
     public void setOnItemClickedListener(itemClickedListener i){
         itemClickedListener = i;
@@ -54,8 +59,9 @@ public class SelectRoomAdapter extends RecyclerView.Adapter<SelectRoomAdapter.Se
     }
 
     @Override
-    public void onBindViewHolder(final SelectRoomAdapter.SelectViewHolder holder, final int position) {
+    public void onBindViewHolder(final SelectViewHolder holder, final int position) {
     final SelectRoom selectRoom = selectRooms.get(position);
+
 //    txNamaDept.setText(selectRoom.getDept());
 //    txNamaFak.setText(selectRoom.getFak());
 //    txJumlah.setText(selectRoom.getJml());
@@ -64,17 +70,18 @@ public class SelectRoomAdapter extends RecyclerView.Adapter<SelectRoomAdapter.Se
         @Override
         public void onClick(View view) {
             Toast.makeText(context, selectRoom.getId_ruangan(), Toast.LENGTH_SHORT).show();
-//            txKapasitas.setText(selectRoom.getKapasitas());
+//            if(itemClickedListener!=null){
+////                final String fasilitas = txFasilitas.getText().toString();
+////                final String kapasitas = txKapasitas.getText().toString();
+//
+//                itemClickedListener.onItemClickedListener(fasilitas, kapasitas);
+//            }
 //            txFasilitas.setText(selectRoom.getFasilitas());
 //            txJadwal.setText(selectRoom.getJadwal());
         }
     });
 
-    if(itemClickedListener!=null){
-        final String fasilitas = selectRoom.getKapasitas();
-        final String jadwal = selectRoom.getJadwal();
-        itemClickedListener.onItemClickedListener(fasilitas, jadwal);
-    }
+
 
     }
 

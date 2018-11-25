@@ -69,8 +69,6 @@ public class VolleyNetwork {
 
     }
 
-
-
     public void postRequest(final VolleyCallback callback, Context context) {
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(
                 Request.Method.POST,getUrl(), getId(),

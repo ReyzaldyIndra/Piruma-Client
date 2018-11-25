@@ -46,6 +46,7 @@ public class SignupActivity extends AppCompatActivity {
         String url = " https://piruma.au-syd.mybluemix.net/api/signup";
         JSONObject id = new JSONObject();
 
+
         try {
             id.put("username",username.getText().toString());
             id.put("email",email.getText().toString());

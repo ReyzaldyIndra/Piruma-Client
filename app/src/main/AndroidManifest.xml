@@ -25,7 +25,8 @@
         <activity android:name=".main.MainActivity" />
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.SignupActivity" />
-        <activity android:name=".ScheduleActivity"></activity>
+        <activity android:name=".ScheduleActivity" />
+        <activity android:name=".FormActivity"></activity>
     </application>
 
 </manifest>

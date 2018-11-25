@@ -31,7 +31,7 @@ import app.piruma_java.network.VolleyNetwork;
 public class SelectRoomActivity extends AppCompatActivity{
 private RecyclerView rvListRoomDept;
 private List<SelectRoom> selectRoomList = new ArrayList<>();
-private List<SelectRoom2> selectRoom2List = new ArrayList<>();
+List<SelectRoom2> selectRoom2List = new ArrayList<>();
 private String TAG = SelectRoomActivity.class.getSimpleName();
 private SelectRoomAdapter selectRoomAdapter;
 

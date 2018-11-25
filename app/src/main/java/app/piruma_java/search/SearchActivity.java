@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 
@@ -35,6 +36,9 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         searchRecyclerView = findViewById(R.id.rv_room_avail);
+        Intent intent = getIntent();
+        String count = intent.getStringExtra("count");
+        Toast.makeText(this, count, Toast.LENGTH_SHORT).show();
         btnPindah = findViewById(R.id.btn_pindah);
         btnPindah.setOnClickListener(new View.OnClickListener() {
             @Override

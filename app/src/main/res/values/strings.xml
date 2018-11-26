@@ -19,5 +19,7 @@
     <string name="pilih_ruangan">Pilih Ruangan :</string>
     <string name="btn_pinjam_ruang">Pinjam Ruang ini</string>
     <string name="hint_kapasitas">Kapasitas Ruangan</string>
+    <string name="title_form">Form Peminjaman Ruangan</string>
+    <string name="pinjam">PINJAM</string>
 
 </resources>

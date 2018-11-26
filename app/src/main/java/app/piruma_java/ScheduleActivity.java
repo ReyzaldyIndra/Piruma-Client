@@ -83,7 +83,7 @@ public void getCapacity(){
         @Override
         public void onSuccess(JSONObject result) {
             try {
-                JSONObject test = result.getJSONObject("count");
+                JSONObject test = result.getJSONObject("result");
                 String cap = test.getString("count");
 
                 Toast.makeText(ScheduleActivity.this, cap, Toast.LENGTH_SHORT).show();

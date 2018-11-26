@@ -1,9 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FormActivity">
+    android:orientation="vertical"
+    tools:context=".FormActivity"
+    android:background="@drawable/classroom3">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rectangle_top"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <ImageButton
+            android:id="@+id/arrow_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow_back"
+            android:background="@color/birubutton"
+            android:layout_marginLeft="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kembali"
+            android:textSize="20sp"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@color/putihteks"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tx_title_form"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/title_form"
+        android:textSize="16sp"
+        android:fontFamily="@font/montserrat_regular"
+        android:textColor="@color/putihteks"
+        android:layout_marginLeft="40dp" />
+
+    <LinearLayout
+        android:id="@+id/layout_order_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp">
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_detail_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/birucard"
+            app:cardCornerRadius="12dp"
+            android:layout_gravity="center"
+            >
+            <TextView
+                android:id="@+id/tx_order_schedule"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="12 Desember 2018"
+                android:fontFamily="@font/montserrat_regular"
+                android:padding="8dp"
+                android:textSize="18sp"
+                android:textColor="@color/putihteks"/>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_detail_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/birucard"
+            android:layout_marginLeft="20dp"
+            app:cardBackgroundColor="@color/birucard"
+            app:cardCornerRadius="12dp">
+            <TextView
+                android:id="@+id/tx_order_room"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="E6"
+                android:padding="8dp"
+                android:textSize="18sp"
+                android:textColor="@color/putihteks"/>
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/et_pic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/Rectangle_form"
+            android:layout_marginHorizontal="10dp"
+            android:inputType="text"
+            android:hint="Nama Penanggung Jawab"
+            android:padding="10dp"
+            android:fontFamily="@font/montserrat_light"
+            />
+        <EditText
+            android:id="@+id/et_jurusan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/Rectangle_form"
+            android:inputType="text"
+            android:layout_marginHorizontal="10dp"
+            android:hint="Jurusan Peminjam"
+            android:fontFamily="@font/montserrat_light"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"/>
+        <EditText
+            android:id="@+id/et_keperluan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/Rectangle_form"
+            android:inputType="text"
+            android:layout_marginHorizontal="10dp"
+            android:hint="Keperluan Peminjaman"
+            android:fontFamily="@font/montserrat_light"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"/>
+
+        <EditText
+            android:id="@+id/et_no_hp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/Rectangle_form"
+        android:inputType="number"
+        android:layout_marginHorizontal="10dp"
+        android:hint="No. HP"
+        android:fontFamily="@font/montserrat_light"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"/>
+
+        <EditText
+            android:id="@+id/et_keterangan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/Rectangle_form"
+        android:inputType="text"
+        android:layout_marginHorizontal="10dp"
+        android:hint="Keterangan (opsional)"
+        android:fontFamily="@font/montserrat_light"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingVertical="17dp">
+        <EditText
+            android:id="@+id/et_jadwal1"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="13:00"
+            android:textColorHint="@color/hitamteks"
+            android:fontFamily="@font/montserrat_regular"
+            android:background="@drawable/rectangle_7"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="s.d."
+            android:textColor="@color/putihteks"
+            android:fontFamily="@font/montserrat_regular"
+            android:paddingHorizontal="10dp"
+            />
+        <EditText
+            android:id="@+id/et_jadwal2"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="15:00"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColorHint="@color/hitamteks"
+            android:background="@drawable/rectangle_7"/>
+
+    </LinearLayout>
+
+<Button
+    android:id="@+id/btn_pinjam"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/pinjam"
+    android:textSize="20sp"
+    android:textColor="@color/putihteks"
+    android:fontFamily="@font/montserrat_regular"
+    android:background="@color/orangecard"/>
+</LinearLayout>

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/classroom3"
     tools:context=".selectroom.SelectRoomActivity">
 
     <TextView
@@ -138,12 +139,11 @@
                     android:layout_height="wrap_content"
                     android:text="Jadwal Pemakaian : "
                     android:textColor="@color/putihteks"/>
-                <TextView
-                    android:id="@+id/sel_tx_jadwal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="07.00-09.00 - Kuliah "
-                    android:textColor="@color/putihteks"/>
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+
             </LinearLayout>
         </LinearLayout>
 
@@ -160,12 +160,6 @@
     android:fontFamily="@font/montserrat_regular"
     android:layout_marginTop="20dp"
     />
-    <TextView
-        android:id="@+id/sel_tx_id_ruangan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ppp"
-        android:textColor="@color/hitamteks"
-        />
+
 
 </LinearLayout>

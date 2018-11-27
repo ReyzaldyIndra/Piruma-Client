@@ -27,10 +27,16 @@ public class FormActivity extends AppCompatActivity {
     private EditText etPic, etJurusan, etKeperluan, etNoHP, etKeterangan;
     private String TAG = FormActivity.class.getSimpleName();
 
+    Bundle b;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
+        b = getIntent().getExtras();
+        String kapasitas = b.getCharSequence("kapasitas").toString();
+        Long timestamp_start = b.getLong("timestamp_start");
+        Long timestamp_end = b.getLong("timestamp_end");
         arrow_back = findViewById(R.id.arrow_back);
         arrow_back.setOnClickListener(new View.OnClickListener() {
             @Override

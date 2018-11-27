@@ -1,53 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
-
-<LinearLayout
-
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    tools:context=".ScheduleActivity">
+    android:gravity="center"
+    android:orientation="vertical">
 
-    <com.applandeo.materialcalendarview.CalendarView
-        android:id="@+id/calendarview"
+    <CalendarView
+        android:id="@+id/calendar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+        />
 
-    </com.applandeo.materialcalendarview.CalendarView>
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="jam"
-        android:onClick="showTimePickerDialog"/>
-    <TextView
-        android:id="@+id/txJadwal1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="jadwal1"
-        />
-    <TextView
-        android:id="@+id/txJadwal2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="jadwal2"
-        />
+        android:id="@+id/date_time_set"
+        android:layout_width="match_parent"
+        android:text="Set"
+        android:layout_height="wrap_content" />
+
     <EditText
         android:id="@+id/edittextKapasitas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:inputType="number"
         android:background="@drawable/rectangle_kapasitas"
-        android:padding="12dp"
+        android:padding="15dp"
         android:hint="@string/hint_kapasitas"
-         />
+        />
     <Button
         android:id="@+id/btn_cari_ruang"
         android:layout_width="wrap_content"
@@ -55,6 +36,4 @@
         android:layout_centerHorizontal="true"
         android:text="Cari Ruangan"/>
 
-
 </LinearLayout>
-</ScrollView>

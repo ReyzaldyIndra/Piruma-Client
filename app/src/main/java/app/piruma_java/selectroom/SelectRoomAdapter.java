@@ -1,6 +1,8 @@
 package app.piruma_java.selectroom;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.v7.view.menu.MenuView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,78 +19,60 @@ import app.piruma_java.R;
 import app.piruma_java.model.SelectRoom;
 
 
-public class SelectRoomAdapter extends RecyclerView.Adapter<SelectRoomAdapter.SelectViewHolder> {
+public class SelectRoomAdapter extends RecyclerView.Adapter<SelectRoomAdapter.MyViewHolder> {
 
-    private Context context;
-    private List<SelectRoom> selectRooms;
-//    private List<SelectRoom2> selectRooms2;
-    private TextView txNamaRuang;
+    private Context mContext;
+    private List<SelectRoom> departemenList;
+    private TextView namaRuangan;
 
-
-    private itemClickedListener itemClickedListener;
-
-
-    public SelectRoomAdapter(Context context, List<SelectRoom> roomDeptList) {
-        this.context = context;
-        this.selectRooms = roomDeptList;
-
-    }
-    public interface itemClickedListener{
-        void onItemClickedListener(String fasilitas, String kapasitas);
+    public interface OnItemClickListener {
+        void onItemClick(SelectRoom item);
     }
 
+    private final OnItemClickListener listener;
 
-    public void setOnItemClickedListener(itemClickedListener i){
-        itemClickedListener = i;
-    }
+    public class MyViewHolder extends RecyclerView.ViewHolder {
 
-    public class SelectViewHolder extends RecyclerView.ViewHolder{
-        public SelectViewHolder(final View itemView) {
-            super(itemView);
-            txNamaRuang = itemView.findViewById(R.id.sel_tx_nama_ruang);
+
+        public MyViewHolder(final View view) {
+            super(view);
+            namaRuangan = view.findViewById(R.id.sel_tx_nama_ruang);
+        }
+        public void bind(final SelectRoom item, final OnItemClickListener listener) {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    listener.onItemClick(item);
+                }
+            });
         }
 
+
+    }
+
+
+    public SelectRoomAdapter(Context mContext, List<SelectRoom> departemenList, OnItemClickListener listener ) {
+        this.mContext = mContext;
+        this.departemenList = departemenList;
+        this.listener = listener;
     }
 
     @Override
-    public SelectRoomAdapter.SelectViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.item_select, viewGroup, false);
+    public SelectRoomAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_select, parent, false);
 
-        return new SelectRoomAdapter.SelectViewHolder(view);
+        return new SelectRoomAdapter.MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(final SelectViewHolder holder, final int position) {
-    final SelectRoom selectRoom = selectRooms.get(position);
-
-//    txNamaDept.setText(selectRoom.getDept());
-//    txNamaFak.setText(selectRoom.getFak());
-//    txJumlah.setText(selectRoom.getJml());
-
-    txNamaRuang.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Toast.makeText(context, selectRoom.getId_ruangan(), Toast.LENGTH_SHORT).show();
-//            if(itemClickedListener!=null){
-////                final String fasilitas = txFasilitas.getText().toString();
-////                final String kapasitas = txKapasitas.getText().toString();
-//
-//                itemClickedListener.onItemClickedListener(fasilitas, kapasitas);
-//            }
-//            txFasilitas.setText(selectRoom.getFasilitas());
-//            txJadwal.setText(selectRoom.getJadwal());
-        }
-    });
-
-
-
+    public void onBindViewHolder(final SelectRoomAdapter.MyViewHolder holder, final int position) {
+        final SelectRoom departemen = departemenList.get(position);
+        holder.bind(departemenList.get(position),listener);
+        namaRuangan.setText(departemen.getRuang());
     }
 
     @Override
     public int getItemCount() {
-        return selectRooms.size();
+        return departemenList.size();
     }
-
-
 }

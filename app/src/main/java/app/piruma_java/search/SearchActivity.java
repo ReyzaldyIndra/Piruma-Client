@@ -2,9 +2,11 @@ package app.piruma_java.search;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -28,37 +30,54 @@ public class SearchActivity extends AppCompatActivity {
     private RecyclerView searchRecyclerView;
     private List<RoomAvail> roomAvails = new ArrayList<>();
     private String TAG = SearchActivity.class.getSimpleName();
+    private String kapasitas;
     private SearchAdapter searchAdapter;
     private Button btnPindah;
+
+
+    Bundle b;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        b = getIntent().getExtras();
+
         searchRecyclerView = findViewById(R.id.rv_room_avail);
-        Intent intent = getIntent();
-        String count = intent.getStringExtra("count");
-        Toast.makeText(this, count, Toast.LENGTH_SHORT).show();
+
+
+        String kapasitas = b.getCharSequence("kapasitas").toString();
+        Long timestamp_start = b.getLong("timestamp_start");
+        Long timestamp_end = b.getLong("timestamp_end");
+
+        getSearchList(kapasitas,timestamp_start,timestamp_end);
+
+
         btnPindah = findViewById(R.id.btn_pindah);
         btnPindah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(SearchActivity.this, SelectRoomActivity.class);
+//                intent.putExtra("departemen", String.valueOf())
+                intent.putExtra("kapasitas",kapasitas);
+                intent.putExtra("timestamp_start",timestamp_start);
+                intent.putExtra("timestamp_end",timestamp_end);
                 startActivity(intent);
             }
         });
-    getSearchList();
+
     }
 
-    void getSearchList(){
+
+    void getSearchList(String kapasitas, Long timestamp_start, Long timestamp_end){
         final String link = "https://piruma.au-syd.mybluemix.net/api/ruangan/search";
         JSONObject body = new JSONObject();
         JSONObject timeStamp = new JSONObject();
 
         try {
-            body.put("kapasitas", "30");
-            timeStamp.put("timestamp_start","1");
-            timeStamp.put("timestamp_end","9999");
+            body.put("kapasitas", kapasitas);
+            timeStamp.put("timestamp_start",timestamp_start.toString());
+            timeStamp.put("timestamp_end",timestamp_end.toString());
             body.put("TimeStamp",timeStamp);
 
         } catch (JSONException e){
@@ -70,6 +89,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onSuccess(JSONObject result) {
                 try{
+                    Log.d("Result :",result.toString());
                     JSONArray array = result.getJSONArray("result");
                     for(int i = 0;i<array.length();i++) {
                     JSONObject search = array.getJSONObject(i);
@@ -96,4 +116,5 @@ public class SearchActivity extends AppCompatActivity {
             }
         }, this);
     }
+
 }

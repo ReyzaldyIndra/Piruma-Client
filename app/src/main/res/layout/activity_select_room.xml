@@ -55,6 +55,7 @@
                     android:fontFamily="@font/montserrat_regular"/>
             </LinearLayout>
 
+
             <android.support.v7.widget.CardView
                 app:cardBackgroundColor="@color/orangecard"
                 app:cardCornerRadius="12dp"

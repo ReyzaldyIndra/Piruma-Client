@@ -21,9 +21,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.piruma_java.R;
+import app.piruma_java.model.SelectRoom;
 import app.piruma_java.selectroom.SelectRoomActivity;
 import app.piruma_java.model.RoomAvail;
 import app.piruma_java.network.VolleyNetwork;
+import app.piruma_java.selectroom.SelectRoomAdapter;
 
 public class SearchActivity extends AppCompatActivity {
 
@@ -32,7 +34,7 @@ public class SearchActivity extends AppCompatActivity {
     private String TAG = SearchActivity.class.getSimpleName();
     private String kapasitas;
     private SearchAdapter searchAdapter;
-    private Button btnPindah;
+
 
 
     Bundle b;
@@ -50,21 +52,12 @@ public class SearchActivity extends AppCompatActivity {
         Long timestamp_start = b.getLong("timestamp_start");
         Long timestamp_end = b.getLong("timestamp_end");
 
+
+
         getSearchList(kapasitas,timestamp_start,timestamp_end);
 
 
-        btnPindah = findViewById(R.id.btn_pindah);
-        btnPindah.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SearchActivity.this, SelectRoomActivity.class);
-//                intent.putExtra("departemen", String.valueOf())
-                intent.putExtra("kapasitas",kapasitas);
-                intent.putExtra("timestamp_start",timestamp_start);
-                intent.putExtra("timestamp_end",timestamp_end);
-                startActivity(intent);
-            }
-        });
+
 
     }
 
@@ -99,8 +92,26 @@ public class SearchActivity extends AppCompatActivity {
                     RoomAvail roomAvail = new RoomAvail(namaDepartemen, namaFakultas, jumlah);
                     roomAvails.add(roomAvail);
                     }
-                    searchAdapter = new SearchAdapter(SearchActivity.this, roomAvails);
-                    RecyclerView.LayoutManager layoutManager = new GridLayoutManager(SearchActivity.this, 1);
+                    searchAdapter = new SearchAdapter(SearchActivity.this, roomAvails, item -> {
+
+
+
+                    });
+
+                    searchAdapter = new SearchAdapter(SearchActivity.this, roomAvails, new SearchAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(RoomAvail item) {
+                            Intent intent = new Intent(SearchActivity.this, SelectRoomActivity.class);
+                            intent.putExtra("TimeStamp", timeStamp.toString());
+                            intent.putExtra("kapasitas", kapasitas);
+                            intent.putExtra("fakultas", item.getFakultas());
+                            intent.putExtra("departemen", item.getDepartemen());
+                            intent.putExtra("count", item.getJumlah());
+                            startActivity(intent);
+                        }
+                    });
+
+                            RecyclerView.LayoutManager layoutManager = new GridLayoutManager(SearchActivity.this, 1);
                     searchRecyclerView.setLayoutManager(layoutManager);
                     searchRecyclerView.setItemAnimator(new DefaultItemAnimator());
                     searchRecyclerView.setAdapter(searchAdapter);

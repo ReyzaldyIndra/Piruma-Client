@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#0F3B60"
+    android:padding="4dp">
+
+    <TextView
+        android:id="@+id/txtDepartemen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Departemen"
+        android:textSize="18sp"
+        android:textColor="#fff"
+        android:fontFamily="@font/montserrat_light"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:gravity="center">
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="#101B20"
+            app:cardCornerRadius="12dp"
+            android:layout_gravity="center">
+            <TextView
+                android:id="@+id/txtRuangan"
+                android:padding="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="2sp"
+                android:text="Ruang E7"
+                android:textSize="16sp"
+                android:textAlignment="center"
+                android:textColor="@color/putihteks"
+                android:fontFamily="@font/montserrat_light"/>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="#101B20"
+            app:cardCornerRadius="12dp"
+            android:layout_gravity="center">
+            <TextView
+                android:id="@+id/txtDate"
+                android:padding="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="13 Maret 2018"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:textColor="@color/putihteks"
+                android:fontFamily="@font/montserrat_light"/>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="#101B20"
+            app:cardCornerRadius="12dp"
+            android:layout_gravity="center">
+            <TextView
+                android:id="@+id/txtTime"
+                android:padding="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="13.00-17.00"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:textColor="@color/putihteks"
+                android:fontFamily="@font/montserrat_light"/>
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama : "
+            android:textSize="18sp"
+            android:textColor="#fff"
+            android:fontFamily="@font/montserrat_light"/>
+        <TextView
+            android:id="@+id/txtPenanggungJawab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fadhlan Hawali"
+            android:textSize="18sp"
+            android:textColor="#fff"
+            android:fontFamily="@font/montserrat_light"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jurusan : "
+            android:textSize="18sp"
+            android:textColor="#fff"
+            android:fontFamily="@font/montserrat_light"/>
+        <TextView
+            android:id="@+id/txtJurusan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jurusan"
+            android:textSize="18sp"
+            android:textColor="#fff"
+            android:fontFamily="@font/montserrat_light"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Keperluan : "
+            android:textSize="18sp"
+            android:textColor="#fff"
+            android:fontFamily="@font/montserrat_light"/>
+        <TextView
+            android:id="@+id/txtKeterangan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Keperluan apa ya"
+            android:textSize="18sp"
+            android:textColor="#fff"
+            android:fontFamily="@font/montserrat_light"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No.HP : "
+            android:textSize="18sp"
+            android:textColor="#fff"
+            android:fontFamily="@font/montserrat_light"/>
+        <TextView
+            android:id="@+id/txtTelepon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="087124081247"
+            android:textSize="18sp"
+            android:textColor="#fff"
+            android:fontFamily="@font/montserrat_light"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Status Peminjaman"
+                android:textSize="14sp"
+                android:textColor="#fff"
+                android:textAlignment="center"
+                android:fontFamily="@font/montserrat_light"/>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#101B20"
+                app:cardCornerRadius="12dp"
+                android:layout_gravity="center">
+                <TextView
+                    android:id="@+id/txtStatusPeminjaman"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:textSize="24sp"
+                    android:textColor="#fff"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/montserrat_light"/>
+            </android.support.v7.widget.CardView>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Status Surat"
+                android:textSize="14sp"
+                android:textColor="#fff"
+                android:textAlignment="center"
+                android:fontFamily="@font/montserrat_light"/>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#101B20">
+                <TextView
+                    android:id="@+id/txtStatusSurat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:textSize="24sp"
+                    android:textColor="#fff"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/montserrat_light"
+                    />
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

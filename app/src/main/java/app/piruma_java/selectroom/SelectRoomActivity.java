@@ -64,10 +64,15 @@ private TextView txNamaDept, txNamaFak, txJumlah, txFasilitas, txJadwal_Start, t
         txKapasitas = findViewById(R.id.sel_tx_kapasitas);
         btnBookRoom = findViewById(R.id.sel_btn_book_room);
 
+
 //        String id_departemen = b.getCharSequence("id_departemen").toString();
+        String departemen = b.getCharSequence("departemen").toString();
         String kapasitas = b.getCharSequence("kapasitas").toString();
-        Long timestamp_start = b.getLong("timestamp_start");
+        Long time = b.getLong("timestamp_start");
         Long timestamp_end = b.getLong("timestamp_end");
+        String jumlah = b.getCharSequence("count").toString();
+        String fakultas = b.getCharSequence("fakultas").toString();
+
 
 
 
@@ -79,20 +84,20 @@ private TextView txNamaDept, txNamaFak, txJumlah, txFasilitas, txJadwal_Start, t
 //                getList_2();
 //            }
 //        });
-getList(kapasitas, timestamp_start, timestamp_end);
+getList(departemen, kapasitas, time, timestamp_end, jumlah, fakultas);
 
     }
 
-    void getList(String kapasitas, Long timestamp_start, Long timestamp_end){
+    void getList(String departemen, String kapasitas, Long time, Long timestamp_end, String jumlah, String fakultas){
         String url = "https://piruma.au-syd.mybluemix.net/api/ruangan/listroom";
         JSONObject body = new JSONObject();
-        JSONObject timeStamp = new JSONObject();
+//        JSONObject timeStamp = new JSONObject();
 
         try{
-//            body.put("id_departemen",id_departemen);
-            timeStamp.put("timestamp_start", timestamp_start.toString());
-            timeStamp.put("timestamp_end", timestamp_end.toString());
-            body.put("TimeStamp", timeStamp);
+            body.put("id_departemen",departemen);
+//            timeStamp.put("timestamp_start", timestamp_start.toString());
+//            timeStamp.put("timestamp_end", timestamp_end.toString());
+//            body.put("TimeStamp", timeStamp);
             body.put("kapasitas", kapasitas);
 
         } catch (JSONException e){
@@ -111,9 +116,13 @@ getList(kapasitas, timestamp_start, timestamp_end);
                         String idRuangan = list.getString("id_ruangan");
                         String namaDept = list.getString("id_departemen");
 
+
                         SelectRoom selectRoom = new SelectRoom(namaRuang, idRuangan, namaDept);
                         selectRoomList.add(selectRoom);
+                        Toast.makeText(SelectRoomActivity.this, idRuangan, Toast.LENGTH_SHORT).show();
                         txNamaDept.setText(selectRoom.getDept());
+                        txNamaFak.setText(fakultas);
+                        txJumlah.setText(jumlah);
                         btnBookRoom.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -122,7 +131,9 @@ getList(kapasitas, timestamp_start, timestamp_end);
                                     public void onClick(View view) {
                                         Intent intent = new Intent(SelectRoomActivity.this, FormActivity.class);
                                         intent.putExtra("id_ruangan", idRuangan);
-                                        intent.putExtra("timestamp_start", timestamp_start);
+                                        intent.putExtra("kapasitas", kapasitas);
+                                        intent.putExtra("timestamp_start", time);
+                                        intent.putExtra("nama_ruangan", namaRuang);
 
                                         startActivity(intent);
                                     }
@@ -146,6 +157,7 @@ getList(kapasitas, timestamp_start, timestamp_end);
 
                 }catch (JSONException e){
                     e.printStackTrace();
+                    Log.d("Ruangan", result.toString());
                 }
             }
 

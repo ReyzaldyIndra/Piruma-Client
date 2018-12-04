@@ -1,20 +1,27 @@
 package app.piruma_java;
 
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
+import com.bumptech.glide.load.model.ByteArrayLoader;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Calendar;
+import java.util.HashMap;
 
 import app.piruma_java.Activity.LoginActivity;
 import app.piruma_java.Activity.SignupActivity;
@@ -24,39 +31,92 @@ import app.piruma_java.network.VolleyNetwork;
 public class FormActivity extends AppCompatActivity {
     private ImageButton arrow_back;
     private TextView txOrderSchedule, txOrderRoom;
-    private EditText etPic, etJurusan, etKeperluan, etNoHP, etKeterangan;
+    private EditText etPic, etJurusan, etKeperluan, etNoHP, etKeterangan, etTimeStart, etTimeEnd;
     private String TAG = FormActivity.class.getSimpleName();
+    private Button btnPinjam;
+    SessionManager session;
 
     Bundle b;
+    ConvertDate convert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
+        convert = new ConvertDate();
+        session = new SessionManager(this);
         b = getIntent().getExtras();
         String kapasitas = b.getCharSequence("kapasitas").toString();
         Long timestamp_start = b.getLong("timestamp_start");
+        Log.d("timestamp : ",timestamp_start.toString());
         Long timestamp_end = b.getLong("timestamp_end");
+        String namaRuang = b.getCharSequence("nama_ruangan").toString();
+
+        txOrderSchedule = findViewById(R.id.tx_order_schedule);
+        txOrderSchedule.setText(convert.convertComplete(timestamp_start*1000));
+        txOrderRoom = findViewById(R.id.tx_order_room);
+        txOrderRoom.setText(namaRuang);
+        etPic = findViewById(R.id.et_pic);
+        etJurusan = findViewById(R.id.et_jurusan);
+        etKeperluan = findViewById(R.id.et_keperluan);
+        etNoHP =  findViewById(R.id.et_no_hp);
+        etKeterangan = findViewById(R.id.et_keterangan);
+        etTimeStart = findViewById(R.id.et_jadwal1);
+        etTimeStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar mStartTime =  Calendar.getInstance();
+                int hour_start = mStartTime.get(Calendar.HOUR_OF_DAY);
+                int minute_start = mStartTime.get(Calendar.MINUTE);
+                TimePickerDialog starttimePicker;
+                starttimePicker = new TimePickerDialog(FormActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+                        etTimeStart.setText(hour + ":" + minute);
+                    }
+                }, hour_start, minute_start, true);
+                starttimePicker.setTitle("Select Time");
+                starttimePicker.show();
+            }
+        });
+        etTimeEnd = findViewById(R.id.et_jadwal2);
+        etTimeEnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar mEndTime = Calendar.getInstance();
+                int hour_end = mEndTime.get(Calendar.HOUR_OF_DAY);
+                int minute_end = mEndTime.get(Calendar.MINUTE);
+                TimePickerDialog endtimePicker;
+                endtimePicker = new TimePickerDialog(FormActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+                        etTimeEnd.setText(hour + ":" + minute);
+                    }
+                }, hour_end, minute_end, true);
+                endtimePicker.setTitle("Select Time");
+                endtimePicker.show();
+            }
+        });
+        btnPinjam = findViewById(R.id.btn_pinjam);
+        btnPinjam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Order();
+            }
+        });
         arrow_back = findViewById(R.id.arrow_back);
         arrow_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent =  new Intent(FormActivity.this, SelectRoomActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
-        txOrderSchedule = findViewById(R.id.tx_order_schedule);
-        txOrderRoom = findViewById(R.id.tx_order_room);
-        etPic = findViewById(R.id.et_pic);
-        etJurusan = findViewById(R.id.et_jurusan);
-        etKeperluan = findViewById(R.id.et_keperluan);
-        etNoHP =  findViewById(R.id.et_no_hp);
-        etKeterangan = findViewById(R.id.et_keterangan);
-
-        Order();
     }
 
     void Order(){
+
         String url = " https://piruma.au-syd.mybluemix.net/api/order";
         JSONObject order = new JSONObject();
 
@@ -72,7 +132,9 @@ public class FormActivity extends AppCompatActivity {
         }
 
         Log.d("body order", order.toString());
+        final HashMap<String, String> user = session.getUserDetails();
         VolleyNetwork request = new VolleyNetwork(url,order,TAG);
+        request.setToken(user.get(SessionManager.KEY_TOKEN));
         request.postRequest(new VolleyNetwork.VolleyCallback() {
             @Override
             public void onSuccess(JSONObject result) {

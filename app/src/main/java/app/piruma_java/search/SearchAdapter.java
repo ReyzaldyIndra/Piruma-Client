@@ -1,11 +1,12 @@
 package app.piruma_java.search;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import java.util.List;
 
@@ -21,43 +22,10 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
     private TextView namaFakultas;
     private TextView jumlahRuangan;
 
-//    public interface  itemClickedListener{
-//        void
-//    }
-public SearchAdapter(Context mContext, List<RoomAvail> departemenList){
-    this.mContext = mContext;
-    this.departemenList = departemenList;
-
+    public interface OnItemClickListener{
+        void onItemClick(RoomAvail item);
 }
-    @Override
-    public SearchAdapter.MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.item_avail, viewGroup, false);
-//        view.setOnClickListener(clickListener);
-
-        return new SearchAdapter.MyViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(final SearchAdapter.MyViewHolder myViewHolder, final int i) {
-    final RoomAvail roomAvail = departemenList.get(i);
-    namaDepartemen.setText(roomAvail.getDepartemen());
-    namaFakultas.setText(roomAvail.getFakultas());
-    jumlahRuangan.setText(roomAvail.getJumlah());
-
-    namaDepartemen.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-
-        }
-    });
-    }
-
-    @Override
-    public int getItemCount() {
-        return departemenList.size();
-    }
-
+private final OnItemClickListener listener;
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
         public MyViewHolder(View view){
@@ -66,15 +34,49 @@ public SearchAdapter(Context mContext, List<RoomAvail> departemenList){
             namaFakultas = view.findViewById(R.id.txtFakultas);
             jumlahRuangan = view.findViewById(R.id.txtJumlahRuangan);
         }
-
-    }
-
-    class clickListener implements View.OnClickListener{
-
-        @Override
-        public void onClick(View view) {
-//        int item =
+        public void bind(final RoomAvail item, final OnItemClickListener listener) {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick(item);
+                }
+            });
         }
+
     }
+
+public SearchAdapter(Context mContext, List<RoomAvail> departemenList, OnItemClickListener listener ){
+    this.mContext = mContext;
+    this.departemenList = departemenList;
+    this.listener = listener;
+
+}
+    @Override
+    public SearchAdapter.MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View view = LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.item_avail, viewGroup, false);
+
+
+        return new SearchAdapter.MyViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(final SearchAdapter.MyViewHolder myViewHolder, final int position) {
+    final RoomAvail roomAvail = departemenList.get(position);
+    myViewHolder.bind(departemenList.get(position),listener);
+    namaDepartemen.setText(roomAvail.getDepartemen());
+    namaFakultas.setText(roomAvail.getFakultas());
+    jumlahRuangan.setText(roomAvail.getJumlah());
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return departemenList.size();
+    }
+
+
+
+
 }
 

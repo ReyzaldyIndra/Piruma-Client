@@ -6,34 +6,44 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:gravity="center"
+
     android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pilih Jadwal"
+        android:textColor="@color/hitamteks"
+        android:fontFamily="@font/montserrat_regular"
+        android:textSize="20dp"/>
 
     <CalendarView
         android:id="@+id/calendar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
-
-    <Button
-        android:id="@+id/date_time_set"
-        android:layout_width="match_parent"
-        android:text="Set"
         android:layout_height="wrap_content" />
+
+
 
     <EditText
         android:id="@+id/edittextKapasitas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
+        android:gravity="center_vertical"
+        android:layout_gravity="center_vertical"
         android:background="@drawable/rectangle_kapasitas"
-        android:padding="15dp"
+        android:padding="20dp"
         android:hint="@string/hint_kapasitas"
         />
     <Button
         android:id="@+id/btn_cari_ruang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/btn_round"
+        android:padding="5dp"
+        android:backgroundTint="@color/orangecard"
+        android:textColor="@color/hitamteks"
+        android:fontFamily="@font/montserrat_regular"
         android:text="Cari Ruangan"/>
 
 </LinearLayout>

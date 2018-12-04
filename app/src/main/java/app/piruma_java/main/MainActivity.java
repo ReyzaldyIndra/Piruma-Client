@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                         String telepon = deskripsi.getString("telepon");
                         String keterangan = deskripsi.getString("keterangan");
                         Long timestamp_start = Long.valueOf(deskripsi.getString("timestamp_start"));
-                        Long timestamp_end = Long.valueOf(deskripsi.getString("timestamp_end"));
+                        Long timestamp_end = Long.valueOf(deskripsi.getString("timestap_end"));
                         Toast.makeText(MainActivity.this, "History", Toast.LENGTH_SHORT).show();
 
                         ConvertDate convertDate = new ConvertDate();
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     mainAdapter = new MainAdapter(getApplicationContext(), roomItemList, item ->{
                         Toast.makeText(MainActivity.this, item.getName_room(), Toast.LENGTH_SHORT).show();
-//                         DialogForm(item.getId_pemesanan(),item.getName_dept(),item.getName_room(),item.getDate(),item.getTime(),item.getPenanggung_jawab(),"Teknologi Informasi",item.getKeterangan(),item.getTelepon());
+                         DialogForm(item.getId_pemesanan(),item.getName_dept(),item.getName_room(),item.getDate(),item.getTime(),item.getPenanggung_jawab(),"Teknologi Informasi",item.getKeterangan(),item.getTelepon());
                     });
                     GridLayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(), 1);
                     RoomRecyclerView.setLayoutManager(mLayoutManager);

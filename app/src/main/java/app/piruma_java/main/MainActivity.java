@@ -92,12 +92,12 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "History", Toast.LENGTH_SHORT).show();
 
                         ConvertDate convertDate = new ConvertDate();
-                        String time_start = convertDate.convertTime(timestamp_start);
-                        String time_end = convertDate.convertTime(timestamp_end);
+                        String time_start = convertDate.convertTime(timestamp_start*1000);
+                        String time_end = convertDate.convertTime(timestamp_end*1000);
                         String time = time_start + " - " + time_end;
                         username.setText(penanggung_jawab);
                         Log.d("History", ruangan);
-                        RoomItem history = new RoomItem(id_pemesanan,ruangan,departemen,penanggung_jawab,telepon,keterangan,convertDate.convertComplete(timestamp_start),time);
+                        RoomItem history = new RoomItem(id_pemesanan,ruangan,departemen,penanggung_jawab,telepon,keterangan,convertDate.convertComplete(timestamp_start*1000),time);
                         roomItemList.add(history);
                     }
                     mainAdapter = new MainAdapter(getApplicationContext(), roomItemList, item ->{

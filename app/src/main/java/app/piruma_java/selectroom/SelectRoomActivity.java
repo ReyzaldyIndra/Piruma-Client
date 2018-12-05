@@ -134,6 +134,7 @@ getList(departemen, kapasitas, timestamp_start, timeStamp, timestamp_end, jumlah
                                         intent.putExtra("kapasitas", kapasitas);
                                         intent.putExtra("timestamp_start", timestamp_start);
                                         intent.putExtra("TimeStamp", timeStamp);
+                                        intent.putExtra("id_departemen",departemen);
 //                                        intent.putExtra(time, getIntent().getLongExtra(timestamp_end, time));
                                         intent.putExtra("nama_ruangan", namaRuang);
 

@@ -54,7 +54,6 @@ public class SearchActivity extends AppCompatActivity {
         Toast.makeText(this, timestamp_start.toString(), Toast.LENGTH_SHORT).show();
 
 
-
         getSearchList(kapasitas,timestamp_start,timestamp_end);
 
 
@@ -94,8 +93,6 @@ public class SearchActivity extends AppCompatActivity {
                     roomAvails.add(roomAvail);
                     }
                     searchAdapter = new SearchAdapter(SearchActivity.this, roomAvails, item -> {
-
-
 
                     });
 

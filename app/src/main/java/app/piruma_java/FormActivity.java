@@ -37,6 +37,7 @@ public class FormActivity extends AppCompatActivity {
     private String TAG = FormActivity.class.getSimpleName();
     private Button btnPinjam;
     SessionManager session;
+    long result_start,result_end;
 
     Bundle b;
     ConvertDate convert;
@@ -54,6 +55,7 @@ public class FormActivity extends AppCompatActivity {
         Toast.makeText(this, timestamp_start.toString(), Toast.LENGTH_SHORT).show();
         Long timestamp_end = b.getLong("timestamp_end");
         String idRuangan = b.getCharSequence("id_ruangan").toString();
+        String idDepartemen = b.getCharSequence("id_departemen").toString();
         String namaRuang = b.getCharSequence("nama_ruangan").toString();
 //        Toast.makeText(this, timeStamp.toString(), Toast.LENGTH_SHORT).show();
 
@@ -85,7 +87,7 @@ public class FormActivity extends AppCompatActivity {
                         mStartTime.set(Calendar.HOUR_OF_DAY, hour);
                         mStartTime.set(Calendar.MINUTE, minute);
                         long p = (hour*3600) + minute*60;
-                        long result_start = timestamp_start + p;
+                        result_start = timestamp_start + p;
 
 
                         Log.d("result_start:", String.valueOf(result_start));
@@ -110,7 +112,7 @@ public class FormActivity extends AppCompatActivity {
                         mEndTime.set(Calendar.HOUR_OF_DAY, hour);
                         mEndTime.set(Calendar.MINUTE, minute);
                         long p = (hour*3600) + minute*60;
-                        long result_end = timestamp_start + timestamp_end + p;
+                        result_end = timestamp_start + timestamp_end + p;
 
                        Log.d("result_end:", String.valueOf(result_end));
                     }
@@ -123,7 +125,7 @@ public class FormActivity extends AppCompatActivity {
         btnPinjam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Order(idRuangan, namaRuang);
+                Order(idRuangan, namaRuang,idDepartemen);
             }
         });
         arrow_back = findViewById(R.id.arrow_back);
@@ -137,21 +139,24 @@ public class FormActivity extends AppCompatActivity {
         });
     }
 
-    void Order(String idRuangan, String namaRuang){
+    void Order(String idRuangan, String namaRuang, String id_departemen){
 
         String url = " https://piruma.au-syd.mybluemix.net/api/order";
         JSONObject order = new JSONObject();
+        JSONObject TimeStamp = new JSONObject();
 
         try{
             order.put("id_ruangan", idRuangan);
             order.put("penanggung_jawab",etPic.getText());
-            order.put("id_departemen",etJurusan.getText());
+            order.put("id_departemen",id_departemen);
+            order.put("departemen",etJurusan.getText());
             order.put("ruangan", namaRuang);
             order.put("email", etEmail.getText());
             order.put("telepon",etNoHP.getText());
             order.put("keterangan",etKeterangan.getText().toString());
-            order.put("timestamp_start", etTimeStart.getText());
-            order.put("timestamp_end", etTimeEnd.getText());
+            TimeStamp.put("timestamp_start", String.valueOf(result_start));
+            TimeStamp.put("timestamp_end", String.valueOf(result_end));
+            order.put("TimeStamp",TimeStamp);
 
         }catch (JSONException e){
             e.printStackTrace();

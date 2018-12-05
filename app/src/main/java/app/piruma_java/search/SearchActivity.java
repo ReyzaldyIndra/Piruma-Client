@@ -103,7 +103,7 @@ public class SearchActivity extends AppCompatActivity {
                         @Override
                         public void onItemClick(RoomAvail item) {
                             Intent intent = new Intent(SearchActivity.this, SelectRoomActivity.class);
-                            intent.putExtra("TimeStamp", timeStamp.toString());
+                            intent.putExtra("TimeStamp", timestamp_start);
                             intent.putExtra("kapasitas", kapasitas);
                             intent.putExtra("fakultas", item.getFakultas());
                             intent.putExtra("departemen", item.getDepartemen());

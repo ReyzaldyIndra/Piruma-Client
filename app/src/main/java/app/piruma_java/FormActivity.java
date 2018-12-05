@@ -20,6 +20,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.security.Timestamp;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -49,10 +50,12 @@ public class FormActivity extends AppCompatActivity {
         b = getIntent().getExtras();
         String kapasitas = b.getCharSequence("kapasitas").toString();
         Long timestamp_start = b.getLong("timestamp_start");
-        Log.d("timestamp : ",timestamp_start.toString());
+        Long timeStamp = b.getLong("TimeStamp");
+        Toast.makeText(this, timestamp_start.toString(), Toast.LENGTH_SHORT).show();
         Long timestamp_end = b.getLong("timestamp_end");
         String idRuangan = b.getCharSequence("id_ruangan").toString();
         String namaRuang = b.getCharSequence("nama_ruangan").toString();
+//        Toast.makeText(this, timeStamp.toString(), Toast.LENGTH_SHORT).show();
 
 
 
@@ -65,6 +68,7 @@ public class FormActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.et_email);
         etNoHP =  findViewById(R.id.et_no_hp);
         etKeterangan = findViewById(R.id.et_keterangan);
+
         etTimeStart = findViewById(R.id.et_jadwal1);
         etTimeStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +76,7 @@ public class FormActivity extends AppCompatActivity {
                 Calendar mStartTime =  Calendar.getInstance();
                 int hour_start = mStartTime.get(Calendar.HOUR_OF_DAY);
                 int minute_start = mStartTime.get(Calendar.MINUTE);
+
                 TimePickerDialog starttimePicker;
                 starttimePicker = new TimePickerDialog(FormActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
@@ -79,7 +84,11 @@ public class FormActivity extends AppCompatActivity {
                         etTimeStart.setText(hour + ":" + minute);
                         mStartTime.set(Calendar.HOUR_OF_DAY, hour);
                         mStartTime.set(Calendar.MINUTE, minute);
-                        Toast.makeText(FormActivity.this, String.valueOf(mStartTime), Toast.LENGTH_SHORT).show();
+                        long p = (hour*3600) + minute*60;
+                        long result_start = timestamp_start + p;
+
+
+                        Log.d("result_start:", String.valueOf(result_start));
                     }
                 }, hour_start, minute_start, true);
                 starttimePicker.setTitle("Select Time");
@@ -98,14 +107,12 @@ public class FormActivity extends AppCompatActivity {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
                         etTimeEnd.setText(hour + ":" + minute);
-                        Calendar c = new GregorianCalendar();
-                        c.set(hour, minute);
-
-                        long timeMili = c.getTimeInMillis()/1000;
-
                         mEndTime.set(Calendar.HOUR_OF_DAY, hour);
                         mEndTime.set(Calendar.MINUTE, minute);
-                        Toast.makeText(FormActivity.this, String.valueOf(mEndTime), Toast.LENGTH_SHORT).show();
+                        long p = (hour*3600) + minute*60;
+                        long result_end = timestamp_start + timestamp_end + p;
+
+                       Log.d("result_end:", String.valueOf(result_end));
                     }
                 }, hour_end, minute_end, true);
                 endtimePicker.setTitle("Select Time");

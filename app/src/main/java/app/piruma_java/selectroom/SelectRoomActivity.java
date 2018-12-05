@@ -66,7 +66,7 @@ private TextView txNamaDept, txNamaFak, txJumlah, txFasilitas, txJadwal_Start, t
 //        String id_departemen = b.getCharSequence("id_departemen").toString();
         String departemen = b.getCharSequence("departemen").toString();
         String kapasitas = b.getCharSequence("kapasitas").toString();
-        Long time = b.getLong("timestamp_start");
+        Long timestamp_start = b.getLong("timestamp_start");
         Long timeStamp = b.getLong("TimeStamp");
         Long timestamp_end = b.getLong("timestamp_end");
         String jumlah = b.getCharSequence("count").toString();
@@ -84,11 +84,11 @@ private TextView txNamaDept, txNamaFak, txJumlah, txFasilitas, txJadwal_Start, t
 //                getList_2();
 //            }
 //        });
-getList(departemen, kapasitas, time, timestamp_end, jumlah, fakultas);
+getList(departemen, kapasitas, timestamp_start, timeStamp, timestamp_end, jumlah, fakultas);
 
     }
 
-    void getList(String departemen, String kapasitas, Long time, Long timestamp_end, String jumlah, String fakultas){
+    void getList(String departemen, String kapasitas, Long timeStamp, Long timestamp_start, Long timestamp_end, String jumlah, String fakultas){
         String url = "https://piruma.au-syd.mybluemix.net/api/ruangan/listroom";
         JSONObject body = new JSONObject();
 //        JSONObject timeStamp = new JSONObject();
@@ -132,10 +132,11 @@ getList(departemen, kapasitas, time, timestamp_end, jumlah, fakultas);
                                         Intent intent = new Intent(SelectRoomActivity.this, FormActivity.class);
                                         intent.putExtra("id_ruangan", idRuangan);
                                         intent.putExtra("kapasitas", kapasitas);
-                                        intent.putExtra("timestamp_start", time);
+                                        intent.putExtra("timestamp_start", timestamp_start);
+                                        intent.putExtra("TimeStamp", timeStamp);
 //                                        intent.putExtra(time, getIntent().getLongExtra(timestamp_end, time));
                                         intent.putExtra("nama_ruangan", namaRuang);
-                                        Toast.makeText(SelectRoomActivity.this, time.toString(), Toast.LENGTH_SHORT).show();
+
 
                                         startActivity(intent);
                                     }

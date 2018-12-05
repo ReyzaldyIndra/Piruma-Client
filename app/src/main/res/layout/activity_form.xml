@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".FormActivity">
+<LinearLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".FormActivity"
     android:background="@color/birubutton">
 
     <LinearLayout
@@ -80,7 +84,6 @@
                 android:id="@+id/tx_order_room"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="E6"
                 android:padding="8dp"
                 android:textSize="18sp"
                 android:textColor="@color/putihteks"/>
@@ -115,29 +118,30 @@
             android:fontFamily="@font/montserrat_light"
             android:layout_marginTop="10dp"
             android:padding="10dp"/>
-        <EditText
-            android:id="@+id/et_keperluan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rectangle_form"
-            android:inputType="text"
-            android:layout_marginHorizontal="10dp"
-            android:hint="Keperluan Peminjaman"
-            android:fontFamily="@font/montserrat_light"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"/>
 
         <EditText
-            android:id="@+id/et_no_hp"
+            android:id="@+id/et_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rectangle_form"
-        android:inputType="number"
+        android:inputType="textEmailAddress"
         android:layout_marginHorizontal="10dp"
-        android:hint="No. HP"
+        android:hint="@string/Email"
         android:fontFamily="@font/montserrat_light"
         android:layout_marginTop="10dp"
         android:padding="10dp"/>
+
+        <EditText
+            android:id="@+id/et_no_hp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangle_form"
+            android:inputType="number"
+            android:layout_marginHorizontal="10dp"
+            android:hint="No. HP"
+            android:fontFamily="@font/montserrat_light"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"/>
 
         <EditText
             android:id="@+id/et_keterangan"
@@ -200,3 +204,4 @@
     android:fontFamily="@font/montserrat_regular"
     android:background="@color/orangecard"/>
 </LinearLayout>
+</ScrollView>

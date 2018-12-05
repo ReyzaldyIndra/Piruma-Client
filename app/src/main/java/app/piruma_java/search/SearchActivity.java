@@ -51,6 +51,7 @@ public class SearchActivity extends AppCompatActivity {
         String kapasitas = b.getCharSequence("kapasitas").toString();
         Long timestamp_start = b.getLong("timestamp_start");
         Long timestamp_end = b.getLong("timestamp_end");
+        Toast.makeText(this, timestamp_start.toString(), Toast.LENGTH_SHORT).show();
 
 
 

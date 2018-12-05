@@ -21,5 +21,6 @@
     <string name="hint_kapasitas">Kapasitas Ruangan</string>
     <string name="title_form">Form Peminjaman Ruangan</string>
     <string name="pinjam">PINJAM</string>
+    <string name="ruang_dipinjam">History Peminjaman Ruang</string>
 
 </resources>

@@ -21,6 +21,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 
 import app.piruma_java.Activity.LoginActivity;
@@ -31,7 +32,7 @@ import app.piruma_java.network.VolleyNetwork;
 public class FormActivity extends AppCompatActivity {
     private ImageButton arrow_back;
     private TextView txOrderSchedule, txOrderRoom;
-    private EditText etPic, etJurusan, etKeperluan, etNoHP, etKeterangan, etTimeStart, etTimeEnd;
+    private EditText etPic, etJurusan, etEmail, etNoHP, etKeterangan, etTimeStart, etTimeEnd;
     private String TAG = FormActivity.class.getSimpleName();
     private Button btnPinjam;
     SessionManager session;
@@ -50,7 +51,10 @@ public class FormActivity extends AppCompatActivity {
         Long timestamp_start = b.getLong("timestamp_start");
         Log.d("timestamp : ",timestamp_start.toString());
         Long timestamp_end = b.getLong("timestamp_end");
+        String idRuangan = b.getCharSequence("id_ruangan").toString();
         String namaRuang = b.getCharSequence("nama_ruangan").toString();
+
+
 
         txOrderSchedule = findViewById(R.id.tx_order_schedule);
         txOrderSchedule.setText(convert.convertComplete(timestamp_start*1000));
@@ -58,7 +62,7 @@ public class FormActivity extends AppCompatActivity {
         txOrderRoom.setText(namaRuang);
         etPic = findViewById(R.id.et_pic);
         etJurusan = findViewById(R.id.et_jurusan);
-        etKeperluan = findViewById(R.id.et_keperluan);
+        etEmail = findViewById(R.id.et_email);
         etNoHP =  findViewById(R.id.et_no_hp);
         etKeterangan = findViewById(R.id.et_keterangan);
         etTimeStart = findViewById(R.id.et_jadwal1);
@@ -73,6 +77,9 @@ public class FormActivity extends AppCompatActivity {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
                         etTimeStart.setText(hour + ":" + minute);
+                        mStartTime.set(Calendar.HOUR_OF_DAY, hour);
+                        mStartTime.set(Calendar.MINUTE, minute);
+                        Toast.makeText(FormActivity.this, String.valueOf(mStartTime), Toast.LENGTH_SHORT).show();
                     }
                 }, hour_start, minute_start, true);
                 starttimePicker.setTitle("Select Time");
@@ -91,6 +98,14 @@ public class FormActivity extends AppCompatActivity {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
                         etTimeEnd.setText(hour + ":" + minute);
+                        Calendar c = new GregorianCalendar();
+                        c.set(hour, minute);
+
+                        long timeMili = c.getTimeInMillis()/1000;
+
+                        mEndTime.set(Calendar.HOUR_OF_DAY, hour);
+                        mEndTime.set(Calendar.MINUTE, minute);
+                        Toast.makeText(FormActivity.this, String.valueOf(mEndTime), Toast.LENGTH_SHORT).show();
                     }
                 }, hour_end, minute_end, true);
                 endtimePicker.setTitle("Select Time");
@@ -101,7 +116,7 @@ public class FormActivity extends AppCompatActivity {
         btnPinjam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Order();
+                Order(idRuangan, namaRuang);
             }
         });
         arrow_back = findViewById(R.id.arrow_back);
@@ -115,17 +130,21 @@ public class FormActivity extends AppCompatActivity {
         });
     }
 
-    void Order(){
+    void Order(String idRuangan, String namaRuang){
 
         String url = " https://piruma.au-syd.mybluemix.net/api/order";
         JSONObject order = new JSONObject();
 
         try{
-            order.put("penanggung_jawab",etPic.getText().toString());
-            order.put("departemen",etJurusan.getText().toString());
-//            order.put("nim",etKeperluan.getText().toString());
-            order.put("telepon",etNoHP.getText().toString());
+            order.put("id_ruangan", idRuangan);
+            order.put("penanggung_jawab",etPic.getText());
+            order.put("id_departemen",etJurusan.getText());
+            order.put("ruangan", namaRuang);
+            order.put("email", etEmail.getText());
+            order.put("telepon",etNoHP.getText());
             order.put("keterangan",etKeterangan.getText().toString());
+            order.put("timestamp_start", etTimeStart.getText());
+            order.put("timestamp_end", etTimeEnd.getText());
 
         }catch (JSONException e){
             e.printStackTrace();

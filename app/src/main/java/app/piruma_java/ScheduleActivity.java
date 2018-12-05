@@ -49,6 +49,21 @@ public class ScheduleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_schedule);
         calendarView = findViewById(R.id.calendar);
         kapasitas = findViewById(R.id.edittextKapasitas);
+
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayofMonth) {
+
+                Calendar c = new GregorianCalendar();
+                c.set(year,month,dayofMonth);
+
+                long timeMili = c.getTimeInMillis()/1000;
+                time = timeMili - (timeMili % 86400) - 25200;
+                Log.d("Waktu dipilih :",String.valueOf(time));
+            }
+
+        });
+
         btnCariRuang = findViewById(R.id.btn_cari_ruang);
         btnCariRuang.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,19 +81,7 @@ public class ScheduleActivity extends AppCompatActivity {
             }
         });
 
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayofMonth) {
 
-                Calendar c = new GregorianCalendar();
-                c.set(year,month,dayofMonth);
-
-                long timeMili = c.getTimeInMillis()/1000;
-                time = timeMili - (timeMili % 86400) - 25200;
-                Log.d("Waktu dipilih :",String.valueOf(time));
-            }
-
-        });
     }
 }
 

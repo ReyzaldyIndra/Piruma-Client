@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content"
@@ -7,9 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".main.MainActivity"
     android:background="@drawable/classroom2"
-    android:orientation="vertical"
-    android:layout_alignParentBottom="true"
-    >
+    android:gravity="center_horizontal">
 
     <TextView
         android:id="@+id/txtWelcome"
@@ -23,7 +21,7 @@
         android:fontFamily="@font/montserrat_light"
         />
     <TextView
-        android:id="@+id/txtName"
+        android:id="@+id/txtUserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Name,"
@@ -32,27 +30,52 @@
         android:textSize="32sp"
         android:textColor="#fff"
         android:fontFamily="@font/montserrat_light"/>
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/btn_add_room"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/add"
-        android:layout_gravity="center_horizontal" />
+
     <LinearLayout
         android:id="@+id/layout_rv"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rectangle_2"
+        android:layout_below="@id/txtUserName"
+        android:layout_centerInParent="true"
+        android:paddingHorizontal="15dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/bg_rv_history"
+        android:backgroundTint="@color/birubutton">
 
-        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ruang_dipinjam"
+            android:layout_gravity="center_horizontal"
+            android:textSize="20sp"
+            android:textColor="@color/putihteks"
+            android:fontFamily="@font/montserrat_regular"
+            android:paddingVertical="5dp"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/main_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
+            android:layout_height="match_parent" />
+        </ScrollView>
 </LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btn_add_room"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/add"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/subtract"
+        />
+    <ImageView
+        android:id="@+id/subtract"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/subtract"
+        android:layout_alignParentBottom="true"/>
 
 
 
-</LinearLayout>
+</RelativeLayout>

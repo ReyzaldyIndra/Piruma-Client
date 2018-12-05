@@ -58,8 +58,6 @@ private TextView txNamaDept, txNamaFak, txJumlah, txFasilitas, txJadwal_Start, t
         txNamaFak = findViewById(R.id.sel_tx_nama_fak);
         txJumlah = findViewById(R.id.sel_tx_jumlah);
         txFasilitas = findViewById(R.id.sel_tx_fasilitas);
-        txJadwal_Start = findViewById(R.id.tx_jadwal_start);
-        txJadwal_End = findViewById(R.id.tx_jadwal_end);
         txJadwal_Keterangan = findViewById(R.id.tx_jadwal_keterangan);
         txKapasitas = findViewById(R.id.sel_tx_kapasitas);
         btnBookRoom = findViewById(R.id.sel_btn_book_room);
@@ -69,9 +67,11 @@ private TextView txNamaDept, txNamaFak, txJumlah, txFasilitas, txJadwal_Start, t
         String departemen = b.getCharSequence("departemen").toString();
         String kapasitas = b.getCharSequence("kapasitas").toString();
         Long time = b.getLong("timestamp_start");
+        Long timeStamp = b.getLong("TimeStamp");
         Long timestamp_end = b.getLong("timestamp_end");
         String jumlah = b.getCharSequence("count").toString();
         String fakultas = b.getCharSequence("fakultas").toString();
+        Toast.makeText(this, timeStamp.toString(), Toast.LENGTH_SHORT).show();
 
 
 
@@ -133,7 +133,9 @@ getList(departemen, kapasitas, time, timestamp_end, jumlah, fakultas);
                                         intent.putExtra("id_ruangan", idRuangan);
                                         intent.putExtra("kapasitas", kapasitas);
                                         intent.putExtra("timestamp_start", time);
+//                                        intent.putExtra(time, getIntent().getLongExtra(timestamp_end, time));
                                         intent.putExtra("nama_ruangan", namaRuang);
+                                        Toast.makeText(SelectRoomActivity.this, time.toString(), Toast.LENGTH_SHORT).show();
 
                                         startActivity(intent);
                                     }

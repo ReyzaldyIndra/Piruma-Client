@@ -43,16 +43,17 @@ public class MainActivity extends AppCompatActivity {
     LayoutInflater inflater;
     View dialogView;
     private FloatingActionButton btnAddRoom;
-    TextView departemen,ruangan,date,time,nama,penanggung_jawab,jurusan,keperluan,telepon,status_peminjaman,status_surat;
+    TextView username, departemen,ruangan,date,time,penanggung_jawab,jurusan,keperluan,telepon,status_peminjaman,status_surat;
+    Bundle b;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        username = findViewById(R.id.txtUserName);
         session = new SessionManager(this);
         RoomRecyclerView = findViewById(R.id.main_recycler_view);
         getData();
-        nama = findViewById(R.id.txtName);
         btnAddRoom = findViewById(R.id.btn_add_room);
         btnAddRoom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                         String time_start = convertDate.convertTime(timestamp_start);
                         String time_end = convertDate.convertTime(timestamp_end);
                         String time = time_start + " - " + time_end;
-//                        nama.setText(penanggung_jawab);
+                        username.setText(penanggung_jawab);
                         Log.d("History", ruangan);
                         RoomItem history = new RoomItem(id_pemesanan,ruangan,departemen,penanggung_jawab,telepon,keterangan,convertDate.convertComplete(timestamp_start),time);
                         roomItemList.add(history);

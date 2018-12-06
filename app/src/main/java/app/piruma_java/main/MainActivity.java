@@ -162,7 +162,11 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         Toast.makeText(MainActivity.this, result.toString(), Toast.LENGTH_SHORT).show();
                         Boolean status_pinjam = result.getBoolean("status_peminjaman");
-                        if(status_pinjam == true){
+                        Boolean status_proses = result.getBoolean("status_proses");
+                        if (status_proses == false){
+                            status_peminjaman.setText("Belum Diproses");
+                        }
+                        else if(status_pinjam == true){
                             status_peminjaman.setText("ACC");
                         }else{
                             status_peminjaman.setText("Ditolak");

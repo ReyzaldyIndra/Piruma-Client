@@ -1,10 +1,12 @@
 package app.piruma_java.main;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     View dialogView;
     private FloatingActionButton btnAddRoom;
     TextView username, departemen,ruangan,date,time,penanggung_jawab,jurusan,keperluan,telepon,status_peminjaman,status_surat;
+    CardView cardPeminjaman, cardSurat;
     Bundle b;
 
     @Override
@@ -126,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
         private void DialogForm(String idPemesanan,String strDepartemen,String strRuangan,String strDate,String strTime, String strNama,String strJurusan,String strKeperluan,String strTelepon) {
+
             dialog = new AlertDialog.Builder(MainActivity.this,R.style.MyDialogTheme);
             inflater = getLayoutInflater();
             dialogView = inflater.inflate(R.layout.dialog_history, null);
@@ -140,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
             telepon = dialogView.findViewById(R.id.txtTelepon);
             status_peminjaman = dialogView.findViewById(R.id.txtStatusPeminjaman);
             status_surat = dialogView.findViewById(R.id.txtStatusSurat);
+            cardPeminjaman = dialogView.findViewById(R.id.card_peminjaman);
 
             departemen.setText(strDepartemen);
             ruangan.setText(strRuangan);
@@ -160,16 +165,19 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(JSONObject result) {
                     try {
-                        Toast.makeText(MainActivity.this, result.toString(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, result.toString(), Toast.LENGTH_SHORT).show();
                         Boolean status_pinjam = result.getBoolean("status_peminjaman");
                         Boolean status_proses = result.getBoolean("status_proses");
                         if (status_proses == false){
                             status_peminjaman.setText("Belum Diproses");
+                            cardPeminjaman.setCardBackgroundColor(getResources().getColor(R.color.kremcard));
                         }
                         else if(status_pinjam == true){
                             status_peminjaman.setText("ACC");
+                            cardPeminjaman.setCardBackgroundColor(getResources().getColor(R.color.hijaucard));
                         }else{
                             status_peminjaman.setText("Ditolak");
+                            cardPeminjaman.setCardBackgroundColor(getResources().getColor(R.color.redcard));
                         }
 
                         status_surat.setText(result.getString("status_surat"));

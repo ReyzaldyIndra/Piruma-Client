@@ -27,6 +27,7 @@ import java.util.HashMap;
 
 import app.piruma_java.Activity.LoginActivity;
 import app.piruma_java.Activity.SignupActivity;
+import app.piruma_java.main.*;
 import app.piruma_java.selectroom.*;
 import app.piruma_java.network.VolleyNetwork;
 
@@ -134,7 +135,6 @@ public class FormActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent =  new Intent(FormActivity.this, SelectRoomActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
     }
@@ -170,6 +170,8 @@ public class FormActivity extends AppCompatActivity {
             @Override
             public void onSuccess(JSONObject result) {
                 Toast.makeText(FormActivity.this, "Order Tercatat!", Toast.LENGTH_SHORT).show();
+                Intent intent =  new Intent(FormActivity.this, MainActivity.class);
+                startActivity(intent);
                 finish();
             }
 

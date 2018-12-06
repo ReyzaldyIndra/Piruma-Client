@@ -11,6 +11,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import app.piruma_java.R;
+import app.piruma_java.model.SelectRoom;
 import app.piruma_java.model.SelectRoom2;
 
 public class SelectRoomAdapter2 extends RecyclerView.Adapter<SelectRoomAdapter2.ViewHolder> {
@@ -34,7 +35,10 @@ public class SelectRoomAdapter2 extends RecyclerView.Adapter<SelectRoomAdapter2.
         jadwal_keterangan.setText(jadwal.getJadwal_keterangan());
     }
 
-
+    public SelectRoomAdapter2(Context mContext, List<SelectRoom2> list) {
+        this.mContext = mContext;
+        this.list = list;
+    }
     @Override
     public int getItemCount() {
         return list.size() ;

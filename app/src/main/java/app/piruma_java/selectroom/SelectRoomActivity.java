@@ -28,6 +28,7 @@ import org.json.JSONStringer;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.piruma_java.ConvertDate;
 import app.piruma_java.R;
 import app.piruma_java.ScheduleActivity;
 import app.piruma_java.model.SelectRoom;
@@ -37,7 +38,7 @@ import app.piruma_java.search.SearchActivity;
 import app.piruma_java.FormActivity;
 
 public class SelectRoomActivity extends AppCompatActivity{
-private RecyclerView rvListRoomDept;
+private RecyclerView rvListRoomDept,rvListJadwal;
 private List<SelectRoom> selectRoomList = new ArrayList<>();
 List<SelectRoom2> selectRoom2List = new ArrayList<>();
 private String TAG = SelectRoomActivity.class.getSimpleName();
@@ -55,6 +56,7 @@ private TextView txNamaDept, txNamaFak, txJumlah, txFasilitas, txJadwal_Start, t
         setContentView(R.layout.activity_select_room);
         b = getIntent().getExtras();
         rvListRoomDept = findViewById(R.id.rv_list_room_dept);
+        rvListJadwal = findViewById(R.id.recyclerView_jadwal);
         txNamaDept = findViewById(R.id.sel_tx_nama_dept);
         txNamaFak = findViewById(R.id.sel_tx_nama_fak);
         txJumlah = findViewById(R.id.sel_tx_jumlah);
@@ -152,7 +154,8 @@ getList(departemen, kapasitas, timestamp_start, timeStamp, timestamp_end, jumlah
                         @Override
                         public void onItemClick(SelectRoom item) {
                             Toast.makeText(SelectRoomActivity.this, item.getId_ruangan(), Toast.LENGTH_SHORT).show();
-                            getList_2(item.getId_ruangan(),b.getLong("timestamp_start"),b.getLong("timestamp_end"));
+                            selectRoom2List.clear();
+                            getList_2(item.getId_ruangan(),timestamp_start,timestamp_start+86400);
                         }
                     });
                     RecyclerView.LayoutManager layoutManager = new GridLayoutManager(SelectRoomActivity.this, 1);
@@ -186,7 +189,7 @@ getList(departemen, kapasitas, timestamp_start, timeStamp, timestamp_end, jumlah
         }catch (JSONException e){
             e.printStackTrace();
         }
-
+        Log.d("Body Jadwal : ",body_2.toString());
         final VolleyNetwork request_2 = new VolleyNetwork (url_2, body_2, TAG);
         request_2.postRequest(new VolleyNetwork.VolleyCallback() {
             @Override
@@ -205,12 +208,17 @@ getList(departemen, kapasitas, timestamp_start, timeStamp, timestamp_end, jumlah
                         String keterangan = deskripsi.getString("keterangan");
                         String timestamp_start = deskripsi.getString("timestamp_start");
                         String timestamp_end = deskripsi.getString("timestamp_end");
-                        SelectRoom2 selectRoom2 = new SelectRoom2(keterangan, timestamp_start, timestamp_end);
+                        ConvertDate convertDate = new ConvertDate();
+                        String time_start = convertDate.convertTime(Long.valueOf(timestamp_start)*1000);
+                        String time_end = convertDate.convertTime(Long.valueOf(timestamp_end)*1000);
+                        SelectRoom2 selectRoom2 = new SelectRoom2(time_start, time_end,keterangan);
                         selectRoom2List.add(selectRoom2);
-                        txJadwal_Start.setText(selectRoom2.getJadwal_start());
-                        txJadwal_End.setText(selectRoom2.getJadwal_end());
-                        txJadwal_Keterangan.setText(selectRoom2.getJadwal_keterangan());
                     }
+                    selectRoomAdapter2 = new SelectRoomAdapter2(SelectRoomActivity.this,selectRoom2List);
+                    RecyclerView.LayoutManager layoutManager = new GridLayoutManager(SelectRoomActivity.this, 1);
+                    rvListJadwal.setLayoutManager(layoutManager);
+                    rvListJadwal.setItemAnimator(new DefaultItemAnimator());
+                    rvListJadwal.setAdapter(selectRoomAdapter2);
 
                 }catch (JSONException e){
                     e.printStackTrace();

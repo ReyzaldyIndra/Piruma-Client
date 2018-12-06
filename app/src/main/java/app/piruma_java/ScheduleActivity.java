@@ -49,7 +49,6 @@ public class ScheduleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_schedule);
         calendarView = findViewById(R.id.calendar);
         kapasitas = findViewById(R.id.edittextKapasitas);
-
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayofMonth) {

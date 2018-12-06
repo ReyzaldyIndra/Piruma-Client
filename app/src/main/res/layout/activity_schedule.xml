@@ -1,49 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:gravity="center"
-
     android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/layout_back_schedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/biru_back"
+        android:paddingVertical="5dp">
+        <ImageButton
+            android:id="@+id/arrow_back_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow_back"
+            android:background="@color/biru_back"
+            android:layout_marginLeft="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kembali"
+            android:textSize="20sp"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@color/putihteks"/>
+    </LinearLayout>
     <TextView
+        android:id="@+id/txTanggalPinjam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pilih Jadwal"
+        android:text="Tanggal Peminjaman"
         android:textColor="@color/hitamteks"
         android:fontFamily="@font/montserrat_regular"
-        android:textSize="20dp"/>
+        android:textSize="20dp"
+        android:layout_below="@id/layout_back_schedule"
+        android:layout_marginLeft="25dp"
+        android:layout_marginBottom="10dp"/>
 
     <CalendarView
         android:id="@+id/calendar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-
+        android:layout_height="wrap_content"
+android:layout_below="@id/layout_back_schedule"
+        android:layout_marginTop="30dp"
+        />
 
     <EditText
         android:id="@+id/edittextKapasitas"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number"
-        android:gravity="center_vertical"
-        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
         android:background="@drawable/rectangle_kapasitas"
         android:padding="20dp"
         android:hint="@string/hint_kapasitas"
+        android:fontFamily="@font/montserrat_regular"
+        android:layout_below="@id/calendar"
         />
+
     <Button
         android:id="@+id/btn_cari_ruang"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/btn_round"
-        android:padding="5dp"
-        android:backgroundTint="@color/orangecard"
-        android:textColor="@color/hitamteks"
-        android:fontFamily="@font/montserrat_regular"
-        android:text="Cari Ruangan"/>
+        android:layout_alignParentBottom="true"
 
-</LinearLayout>
+        android:backgroundTint="@color/orangecard"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="Cari Ruangan"
+        android:paddingVertical="20dp"
+        android:textColor="@color/putihteks"/>
+</RelativeLayout>

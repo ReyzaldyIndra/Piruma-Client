@@ -65,7 +65,7 @@
                 android:id="@+id/tx_order_schedule"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="12 Desember 2018"
+                android:text=""
                 android:fontFamily="@font/montserrat_regular"
                 android:padding="8dp"
                 android:textSize="18sp"

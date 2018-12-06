@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/birubutton"
     tools:context=".selectroom.SelectRoomActivity">
 
     <LinearLayout
+        android:id="@+id/layout_back_select"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="@drawable/rectangle_top"
+        android:background="@color/biru_back"
         android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:paddingVertical="5dp">
         <ImageButton
-            android:id="@+id/arrow_back"
+            android:id="@+id/arrow_back_select"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/arrow_back"
-            android:background="@color/birubutton"
+            android:background="@color/biru_back"
             android:layout_marginLeft="20dp"/>
         <TextView
             android:layout_width="wrap_content"
@@ -40,6 +41,7 @@
         android:textColor="@color/putihteks"
         android:textSize="20sp"
         android:fontFamily="@font/montserrat_regular"
+        android:layout_below="@id/layout_back_select"
         />
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -47,6 +49,7 @@
         android:layout_marginHorizontal="20dp"
         app:cardCornerRadius="10dp"
         app:cardBackgroundColor="@color/birucard"
+        android:layout_below="@id/sel_tx_pilihRuang"
         >
 
         <LinearLayout
@@ -60,7 +63,8 @@
             android:id="@+id/ll_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
 
             <LinearLayout
                 android:layout_width="220dp"
@@ -86,10 +90,9 @@
             <android.support.v7.widget.CardView
                 app:cardBackgroundColor="@color/orangecard"
                 app:cardCornerRadius="12dp"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                >
+                android:padding="15dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -100,7 +103,7 @@
                         android:id="@+id/sel_tx_jumlah"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="4"
+                        android:text=""
                         android:textAlignment="center"
                         android:textSize="27sp"
                         android:fontFamily="@font/montserrat_regular"
@@ -118,11 +121,17 @@
             </android.support.v7.widget.CardView>
         </LinearLayout>
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/line_horizontal"
+                android:layout_marginTop="10dp"/>
+
         <LinearLayout
+            android:id="@+id/ll_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:orientation="horizontal">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_list_room_dept"
@@ -133,10 +142,15 @@
 
             </android.support.v7.widget.RecyclerView>
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               android:src="@drawable/line_vertical"
+                android:layout_marginHorizontal="10dp"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="10dp"
                 android:orientation="vertical"
                 android:layout_weight="1">
                 <TextView
@@ -152,6 +166,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/putihteks"
                     android:text="Klik nama ruangan"
+
                     />
                 <TextView
                     android:id="@+id/sel_fasilitas"
@@ -159,6 +174,7 @@
                     android:layout_height="wrap_content"
                     android:text="Fasilitas:"
                     android:textColor="@color/putihteks"
+                    android:layout_marginTop="5dp"
                     />
                 <TextView
                     android:id="@+id/sel_tx_fasilitas"
@@ -172,16 +188,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Jadwal Pemakaian : "
-                    android:textColor="@color/putihteks"/>-
+                    android:textColor="@color/putihteks"
+                    android:layout_marginTop="5dp"/>-
                 <android.support.v7.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
         </LinearLayout>
-
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/line_horizontal"
+                android:layout_marginBottom="20dp"
+                />
         </LinearLayout>
+
     </android.support.v7.widget.CardView>
 
 <Button
@@ -192,8 +213,9 @@
     android:text="@string/btn_pinjam_ruang"
     android:textColor="@color/putihteks"
     android:fontFamily="@font/montserrat_regular"
-    android:layout_marginTop="20dp"
+    android:layout_alignParentBottom="true"
+
     />
 
 
-</LinearLayout>
+</RelativeLayout>

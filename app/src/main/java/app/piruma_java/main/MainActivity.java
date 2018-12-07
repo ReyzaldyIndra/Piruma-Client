@@ -65,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        final HashMap<String, String> user = session.getUserDetails();
+        username.setText(user.get(SessionManager.KEY_NIF));
 
     }
 
@@ -82,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(JSONObject result) {
                 try {
                     JSONArray detail = result.getJSONArray("result");
+
                     for (int i = 0;i <detail.length();i++){
                         JSONObject deskripsi = detail.getJSONObject(i);
                         String id_pemesanan = deskripsi.getString("id_pemesanan");
@@ -98,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                         String time_start = convertDate.convertTime(timestamp_start*1000);
                         String time_end = convertDate.convertTime(timestamp_end*1000);
                         String time = time_start + " - " + time_end;
-                        username.setText(penanggung_jawab);
+                        //username.setText(penanggung_jawab);
                         Log.d("History", ruangan);
                         RoomItem history = new RoomItem(id_pemesanan,ruangan,departemen,penanggung_jawab,telepon,keterangan,convertDate.convertComplete(timestamp_start*1000),time);
                         roomItemList.add(history);

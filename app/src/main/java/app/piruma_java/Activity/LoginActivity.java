@@ -79,8 +79,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onSuccess(JSONObject result) {
                 Toast.makeText(LoginActivity.this, "Berhasil Masuk", Toast.LENGTH_SHORT).show();
                 try {
+                    String username = result.getString("username");
                     String token = result.getString("token");
-                    session.createLoginSession(email,"",token);
+                    session.createLoginSession(email,username,token);
                     Intent i = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(i);
                 } catch (JSONException e) {
